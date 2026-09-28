@@ -1,0 +1,91 @@
+[gd_scene format=3 uid="uid://b0tkjau6pqcmb"]
+
+[ext_resource type="Texture2D" uid="uid://dlqwyg4w3x6u5" path="res://assets/pong_assets/Bg.png" id="1_ig7tw"]
+[ext_resource type="Script" uid="uid://brvufi5cgnv7i" path="res://player.gd" id="2_0xm2m"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uj04i"]
+size = Vector2(20, 162)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p5viw"]
+size = Vector2(21, 162)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jc63w"]
+size = Vector2(10, 9)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7h7mn"]
+size = Vector2(1152, 88)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vpupq"]
+size = Vector2(61, 648)
+
+[node name="Main" type="Sprite2D" unique_id=312911566]
+
+[node name="Bg" type="Sprite2D" parent="." unique_id=855085324]
+texture_filter = 1
+texture = ExtResource("1_ig7tw")
+centered = false
+
+[node name="Player" type="StaticBody2D" parent="." unique_id=1849591510]
+position = Vector2(30, 324)
+script = ExtResource("2_0xm2m")
+
+[node name="ColorRect" type="ColorRect" parent="Player" unique_id=1687756685]
+offset_top = -81.0
+offset_right = 20.0
+offset_bottom = 81.0
+offset_transform_enabled = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=376980330]
+position = Vector2(10, 0)
+shape = SubResource("RectangleShape2D_uj04i")
+
+[node name="CPU" type="StaticBody2D" parent="." unique_id=1167846903]
+position = Vector2(1102, 324)
+
+[node name="ColorRect" type="ColorRect" parent="CPU" unique_id=191004902]
+offset_left = -2.0
+offset_top = -81.0
+offset_right = 19.0
+offset_bottom = 81.0
+offset_transform_enabled = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CPU" unique_id=1592565033]
+position = Vector2(8.5, 0)
+shape = SubResource("RectangleShape2D_p5viw")
+
+[node name="ball" type="CharacterBody2D" parent="." unique_id=792412791]
+position = Vector2(576, 324)
+collision_mask = 3
+
+[node name="ColorRect" type="ColorRect" parent="ball" unique_id=1719048143]
+offset_left = -5.0
+offset_right = 5.0
+offset_bottom = 9.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ball" unique_id=1950761400]
+position = Vector2(0, 4.5)
+shape = SubResource("RectangleShape2D_jc63w")
+
+[node name="Borders" type="StaticBody2D" parent="." unique_id=1079001136]
+collision_layer = 2
+
+[node name="Top" type="CollisionShape2D" parent="Borders" unique_id=1026387735]
+position = Vector2(576, -44)
+shape = SubResource("RectangleShape2D_7h7mn")
+
+[node name="Bottom" type="CollisionShape2D" parent="Borders" unique_id=1442852650]
+position = Vector2(576, 692)
+shape = SubResource("RectangleShape2D_7h7mn")
+
+[node name="Left" type="Area2D" parent="." unique_id=322663652]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Left" unique_id=673502741]
+position = Vector2(-30.5, 324)
+shape = SubResource("RectangleShape2D_vpupq")
+
+[node name="Right" type="Area2D" parent="." unique_id=1388317240]
+position = Vector2(1213, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Right" unique_id=1112950999]
+position = Vector2(-30.5, 324)
+shape = SubResource("RectangleShape2D_vpupq")
