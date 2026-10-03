@@ -1,13 +1,16 @@
 [gd_scene format=3 uid="uid://b0tkjau6pqcmb"]
 
+[ext_resource type="Script" uid="uid://dychjk2ckjac4" path="res://main.gd" id="1_1bvp3"]
 [ext_resource type="Texture2D" uid="uid://dlqwyg4w3x6u5" path="res://assets/pong_assets/Bg.png" id="1_ig7tw"]
 [ext_resource type="Script" uid="uid://brvufi5cgnv7i" path="res://player.gd" id="2_0xm2m"]
+[ext_resource type="FontFile" uid="uid://d4d55n16lokxi" path="res://assets/pong_assets/pixel_font.ttf" id="3_h2yge"]
+[ext_resource type="Script" uid="uid://cmyffroe5l4y2" path="res://ball.gd" id="4_lquwl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uj04i"]
-size = Vector2(20, 162)
+size = Vector2(20, 128)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p5viw"]
-size = Vector2(21, 162)
+size = Vector2(21, 128)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jc63w"]
 size = Vector2(10, 9)
@@ -19,6 +22,7 @@ size = Vector2(1152, 88)
 size = Vector2(61, 648)
 
 [node name="Main" type="Sprite2D" unique_id=312911566]
+script = ExtResource("1_1bvp3")
 
 [node name="Bg" type="Sprite2D" parent="." unique_id=855085324]
 texture_filter = 1
@@ -30,13 +34,13 @@ position = Vector2(30, 324)
 script = ExtResource("2_0xm2m")
 
 [node name="ColorRect" type="ColorRect" parent="Player" unique_id=1687756685]
-offset_top = -81.0
+offset_top = -68.0
 offset_right = 20.0
-offset_bottom = 81.0
+offset_bottom = 60.0
 offset_transform_enabled = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=376980330]
-position = Vector2(10, 0)
+position = Vector2(10, -4)
 shape = SubResource("RectangleShape2D_uj04i")
 
 [node name="CPU" type="StaticBody2D" parent="." unique_id=1167846903]
@@ -44,18 +48,19 @@ position = Vector2(1102, 324)
 
 [node name="ColorRect" type="ColorRect" parent="CPU" unique_id=191004902]
 offset_left = -2.0
-offset_top = -81.0
+offset_top = -68.0
 offset_right = 19.0
-offset_bottom = 81.0
+offset_bottom = 60.0
 offset_transform_enabled = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CPU" unique_id=1592565033]
-position = Vector2(8.5, 0)
+position = Vector2(8.5, -4)
 shape = SubResource("RectangleShape2D_p5viw")
 
 [node name="ball" type="CharacterBody2D" parent="." unique_id=792412791]
 position = Vector2(576, 324)
 collision_mask = 3
+script = ExtResource("4_lquwl")
 
 [node name="ColorRect" type="ColorRect" parent="ball" unique_id=1719048143]
 offset_left = -5.0
@@ -89,3 +94,31 @@ position = Vector2(1213, 0)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Right" unique_id=1112950999]
 position = Vector2(-30.5, 324)
 shape = SubResource("RectangleShape2D_vpupq")
+
+[node name="hud" type="CanvasLayer" parent="." unique_id=1069210424]
+
+[node name="playerscore" type="Label" parent="hud" unique_id=362289951]
+texture_filter = 1
+offset_left = 400.0
+offset_top = 5.0
+offset_right = 440.0
+offset_bottom = 28.0
+scale = Vector2(4, 4)
+theme_override_fonts/font = ExtResource("3_h2yge")
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="computerscore" type="Label" parent="hud" unique_id=727002897]
+texture_filter = 1
+offset_left = 592.0
+offset_top = 5.0
+offset_right = 632.0
+offset_bottom = 28.0
+scale = Vector2(4, 4)
+theme_override_fonts/font = ExtResource("3_h2yge")
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Timer" type="Timer" parent="." unique_id=2028204183]
