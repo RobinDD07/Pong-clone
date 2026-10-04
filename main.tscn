@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dlqwyg4w3x6u5" path="res://assets/pong_assets/Bg.png" id="1_ig7tw"]
 [ext_resource type="Script" uid="uid://brvufi5cgnv7i" path="res://player.gd" id="2_0xm2m"]
 [ext_resource type="FontFile" uid="uid://d4d55n16lokxi" path="res://assets/pong_assets/pixel_font.ttf" id="3_h2yge"]
+[ext_resource type="Script" uid="uid://c7uanwxs6r78c" path="res://cpu.gd" id="4_7mycd"]
 [ext_resource type="Script" uid="uid://cmyffroe5l4y2" path="res://ball.gd" id="4_lquwl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uj04i"]
@@ -45,6 +46,7 @@ shape = SubResource("RectangleShape2D_uj04i")
 
 [node name="CPU" type="StaticBody2D" parent="." unique_id=1167846903]
 position = Vector2(1102, 324)
+script = ExtResource("4_7mycd")
 
 [node name="ColorRect" type="ColorRect" parent="CPU" unique_id=191004902]
 offset_left = -2.0
@@ -66,6 +68,7 @@ script = ExtResource("4_lquwl")
 offset_left = -5.0
 offset_right = 5.0
 offset_bottom = 9.0
+color = Color(0.24313726, 1, 1, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ball" unique_id=1950761400]
 position = Vector2(0, 4.5)
@@ -121,4 +124,10 @@ text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Timer" type="Timer" parent="." unique_id=2028204183]
+[node name="ballTimer" type="Timer" parent="." unique_id=2028204183]
+one_shot = true
+autostart = true
+
+[connection signal="body_entered" from="Left" to="." method="_on_left_body_entered"]
+[connection signal="body_entered" from="Right" to="." method="_on_right_body_entered"]
+[connection signal="timeout" from="ballTimer" to="." method="_on_ball_timer_timeout"]
