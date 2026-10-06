@@ -8,7 +8,7 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	var direction = Input.get_axis("up","down")
-	position.y+= get_parent().SPEED*direction
+	position.y+= get_parent().SPEED*direction*delta
 	
 	position.y = clamp(position.y, pad_height/2, window_height - pad_height/2)
 	

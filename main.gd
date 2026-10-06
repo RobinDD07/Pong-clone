@@ -1,7 +1,7 @@
 extends Sprite2D
 
 var scores := [0,0]
-const SPEED: int = 5
+const SPEED: int = 400
 
 
 func _on_ball_timer_timeout() -> void:
