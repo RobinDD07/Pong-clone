@@ -12,10 +12,3 @@ func _process(delta: float) -> void:
 	
 	position.y = clamp(position.y, pad_height/2, window_height - pad_height/2)
 	
-
-#const speed: int = 10
-#
-#
-#func _physics_process(delta: float) -> void:
-	#var direction = Input.get_axis("up","down")
-	#position.y+=speed*direction

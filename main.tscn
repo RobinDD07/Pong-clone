@@ -20,7 +20,7 @@ size = Vector2(10, 9)
 size = Vector2(1152, 88)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vpupq"]
-size = Vector2(61, 648)
+size = Vector2(61, 824)
 
 [node name="Main" type="Sprite2D" unique_id=312911566]
 script = ExtResource("1_1bvp3")
@@ -68,7 +68,7 @@ script = ExtResource("4_lquwl")
 offset_left = -5.0
 offset_right = 5.0
 offset_bottom = 9.0
-color = Color(0.24313726, 1, 1, 1)
+color = Color(0.99853367, 0.6321088, 0.7739726, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ball" unique_id=1950761400]
 position = Vector2(0, 4.5)
@@ -126,8 +126,66 @@ vertical_alignment = 1
 
 [node name="ballTimer" type="Timer" parent="." unique_id=2028204183]
 one_shot = true
-autostart = true
+
+[node name="menu" type="CanvasLayer" parent="." unique_id=1292785792]
+
+[node name="normal" type="Button" parent="menu" unique_id=1778765826]
+offset_top = 488.0
+offset_right = 136.0
+offset_bottom = 528.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_h2yge")
+theme_override_font_sizes/font_size = 32
+text = "NORMAL"
+
+[node name="hard" type="Button" parent="menu" unique_id=1392555855]
+offset_top = 576.0
+offset_right = 136.0
+offset_bottom = 616.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_h2yge")
+theme_override_font_sizes/font_size = 32
+text = "HARD"
+
+[node name="PVP" type="Button" parent="menu" unique_id=1259711535]
+offset_left = 952.0
+offset_top = 576.0
+offset_right = 1088.0
+offset_bottom = 616.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_h2yge")
+theme_override_font_sizes/font_size = 32
+text = "PVP"
+
+[node name="PVE" type="Button" parent="menu" unique_id=1710491328]
+offset_left = 952.0
+offset_top = 488.0
+offset_right = 1088.0
+offset_bottom = 528.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_h2yge")
+theme_override_font_sizes/font_size = 32
+text = "PVE"
+
+[node name="pause" type="CanvasLayer" parent="." unique_id=891250119]
+process_mode = 3
+visible = false
+
+[node name="restart" type="Button" parent="pause" unique_id=341506685]
+offset_left = 456.0
+offset_top = 320.0
+offset_right = 688.0
+offset_bottom = 360.0
+theme_override_colors/font_color = Color(0.9472169, 0.8977931, 0.16304198, 1)
+theme_override_fonts/font = ExtResource("3_h2yge")
+theme_override_font_sizes/font_size = 32
+text = "RESTART"
 
 [connection signal="body_entered" from="Left" to="." method="_on_left_body_entered"]
 [connection signal="body_entered" from="Right" to="." method="_on_right_body_entered"]
 [connection signal="timeout" from="ballTimer" to="." method="_on_ball_timer_timeout"]
+[connection signal="pressed" from="menu/normal" to="ball" method="_on_normal_pressed"]
+[connection signal="pressed" from="menu/hard" to="ball" method="_on_hard_pressed"]
+[connection signal="pressed" from="menu/PVP" to="CPU" method="_on_pvp_pressed"]
+[connection signal="pressed" from="menu/PVE" to="CPU" method="_on_pve_pressed"]
+[connection signal="pressed" from="pause/restart" to="ball" method="_on_restart_pressed"]

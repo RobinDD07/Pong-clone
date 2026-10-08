@@ -1,7 +1,7 @@
 extends Sprite2D
 
 var scores := [0,0]
-const SPEED: int = 400
+const SPEED: int = 500
 
 
 func _on_ball_timer_timeout() -> void:
@@ -13,7 +13,7 @@ func _on_left_body_entered(body: Node2D) -> void:
 	$hud/computerscore.text = str(scores[1])
 	$ballTimer.start()
 
-#plater ka score
+#player ka score
 func _on_right_body_entered(body: Node2D) -> void:
 	scores[0] += 1
 	$hud/playerscore.text = str(scores[0])
